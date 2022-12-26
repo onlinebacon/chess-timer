@@ -196,7 +196,7 @@ const drawPlayer = (index) => {
 	let y = cy;
 	const player = players[index];
 	const progress = 1 - player.time / player.totalTime;
-	const color = gameIsPaused() ? '#777' : progressToColor(progress);
+	const color = player.running ? progressToColor(progress) : '#777';
 	ctx.fillStyle = color;
 	ctx.strokeStyle = color;
 	drawProgressArc(progress, clockRadius, clockArcThickness, x, y);
