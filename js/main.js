@@ -138,12 +138,18 @@ const drawTime = (time, x, y) => {
 };
 
 const drawProgressArc = (progress, radius, thickness, x, y) => {
-	const ang0 = - Math.PI/2 + progress*Math.PI*2;
-	const ang1 = Math.PI*1.5;
+	const ang0 = - Math.PI/2;
+	const ang1 = ang0 + progress*Math.PI*2;
+	const ang2 = Math.PI*1.5;
 	ctx.lineCap = 'butt';
 	ctx.lineWidth = thickness;
+	ctx.globalAlpha = 0.35;
 	ctx.beginPath();
 	ctx.arc(x, y, radius - thickness*0.5, ang0, ang1);
+	ctx.stroke();
+	ctx.globalAlpha = 1;
+	ctx.beginPath();
+	ctx.arc(x, y, radius - thickness*0.5, ang1, ang2);
 	ctx.stroke();
 };
 
