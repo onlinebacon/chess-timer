@@ -41,6 +41,11 @@ const gameIsOver = () => {
 	return loser != null;
 };
 
+const gameIsPaused = () => {
+	const running = players.find(player => player.running);
+	return running == null;
+};
+
 const buildButton = ({
 	getPos,
 	draw,
@@ -191,7 +196,7 @@ const drawPlayer = (index) => {
 	let y = cy;
 	const player = players[index];
 	const progress = 1 - player.time / player.totalTime;
-	const color = progressToColor(progress);
+	const color = gameIsPaused() ? '#777' : progressToColor(progress);
 	ctx.fillStyle = color;
 	ctx.strokeStyle = color;
 	drawProgressArc(progress, clockRadius, clockArcThickness, x, y);
